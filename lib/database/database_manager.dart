@@ -8,6 +8,7 @@ class DatabaseManager {
   }
 
   _onCreate(Database db, int version) async {
+    await db.execute(_cards);
     await db.execute(_categorias);
     await db.execute(_transacoes);
     await db.insert('categorias', {
@@ -64,6 +65,19 @@ class DatabaseManager {
       'categoriaIcone': 'money',
       'categoriaTipoTransacao': 1
     });
+
+    await db.insert('cards', {
+      'cardNumber': '0000 0000 0000 0000',
+      'cvv': '123',
+      'ownerName': 'FULADO DA SILVA',
+      'expireDate': '27/30'
+    });
+    await db.insert('cards', {
+      'cardNumber': '0000 0000 0000 0000',
+      'cvv': '312',
+      'ownerName': 'FULANO LIMA',
+      'expireDate': '21/29'
+    });
   }
 
   String get _categorias => '''
@@ -86,6 +100,16 @@ class DatabaseManager {
       observacao TEXT, 
       categoriaId INTEGER,
       FOREIGN KEY(categoriaId) REFERENCES categorias(id)
+    );
+  ''';
+
+  String get _cards => '''
+    CREATE TABLE IF NOT EXISTS cards (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      cardNumber TEXT,
+      ownerName TEXT,
+      cvv TEXT,
+      expireDate TEXT
     );
   ''';
 }

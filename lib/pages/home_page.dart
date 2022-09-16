@@ -3,6 +3,8 @@ import 'package:financas_pessoais/pages/dashboard_page.dart';
 import 'package:financas_pessoais/pages/transacoes_lista_page.dart';
 import 'package:flutter/material.dart';
 
+import 'card_list_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -30,6 +32,7 @@ class _HomePageState extends State<HomePage> {
           DashBoardPage(),
           TransacoesListaPage(),
           CategoriasListaPage(),
+          CardListPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -42,6 +45,8 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.swap_horiz), label: 'Transações'),
           BottomNavigationBarItem(
               icon: Icon(Icons.view_list), label: 'Categorias'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.credit_card), label: 'Cartões'),
         ],
         onTap: (pagina) {
           pc.animateToPage(
